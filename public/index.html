@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doe por Eles — Apoio a Animais em Situação de Rua</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Doe por Eles</a>
+      <nav class="nav" id="nav">
+        <a href="#problema">O Problema</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#metas">Metas</a>
+        <a href="#doar" class="btn-nav">Doar</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Doe agora e tire animais da rua</h1>
+        <p class="hero-subtitle">Sua doação financia resgate, atendimento veterinário, abrigo temporário e adoção responsável em parceria com ONGs sérias.</p>
+        <p class="hero-impact">Cada R$ 500 financia um resgate completo com atendimento veterinário.</p>
+        <a
+          href="#doar"
+          class="cta-hero"
+          aria-label="Fazer uma doação agora para apoiar animais em situação de rua"
+        >
+          Fazer uma doação agora
+        </a>
+        <p class="hero-microcopy">
+          Doação segura, com total transparência e prestação de contas enviada a cada campanha.
+        </p>
+        <div class="hero-trust" role="region" aria-label="Metas da campanha e compromisso de transparência">
+          <span class="hero-trust-item"><strong>Meta inicial:</strong> R$ 50.000</span>
+          <span class="hero-trust-sep" aria-hidden="true"></span>
+          <span class="hero-trust-item"><strong>Meta estendida:</strong> R$ 200.000</span>
+          <span class="hero-trust-sep" aria-hidden="true"></span>
+          <span class="hero-trust-item">Prestação de contas pública</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- O Problema -->
+    <section id="problema" class="section">
+      <div class="container">
+        <h2 class="section-title">Por que sua doação importa</h2>
+        <p class="section-intro">Milhares de cães e gatos vivem em vulnerabilidade nas ruas. Sem atendimento veterinário, alimentação ou abrigo, muitos não sobrevivem.</p>
+        <ul class="problema-list">
+          <li><strong>Resgate:</strong> Retirada segura de animais em risco ou maus-tratos.</li>
+          <li><strong>Atendimento veterinário:</strong> Vacinas, castração e tratamentos de emergência.</li>
+          <li><strong>Abrigo e alimentação:</strong> Espaço temporário e ração até adoção ou realocação.</li>
+          <li><strong>Realocação:</strong> Encaminhamento para lares temporários ou adoção responsável.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Como os recursos serão usados -->
+    <section id="recursos" class="section">
+      <div class="container">
+        <h2 class="section-title">Como usamos os recursos</h2>
+        <p class="section-intro">Compromisso total com transparência. Os valores são destinados às ONGs parceiras conforme o modelo abaixo.</p>
+        <div class="destino-grid">
+          <div class="destino-card">
+            <div class="destino-percent">70%</div>
+            <h3>Atendimento veterinário</h3>
+            <p>Consultas, vacinação, castração, medicamentos e cirurgias de emergência.</p>
+          </div>
+          <div class="destino-card">
+            <div class="destino-percent">20%</div>
+            <h3>Abrigo e alimentação</h3>
+            <p>Manutenção de abrigos temporários, ração e cuidados diários.</p>
+          </div>
+          <div class="destino-card">
+            <div class="destino-percent">10%</div>
+            <h3>Logística de resgate</h3>
+            <p>Transporte e deslocamento para resgates e realocações.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metas + Barra de progresso -->
+    <section id="metas" class="section goals-section">
+      <div class="container">
+        <h2 class="section-title">Nossas metas</h2>
+        <p class="goals-text">Meta inicial: <strong>R$ 50.000</strong> — Meta estendida: <strong>R$ 200.000</strong>. A barra abaixo reflete o total arrecadado em relação à meta estendida.</p>
+        <div class="goals-meta">
+          <span id="campaign-goal">Meta inicial: R$ 50.000</span>
+          <span id="campaign-goal-extended">Meta estendida: R$ 200.000</span>
+        </div>
+        <div class="progress-card">
+          <div class="progress-header">
+            <span class="progress-label">Arrecadado</span>
+            <span id="campaign-collected" class="progress-value">R$ 0</span>
+            <span id="campaign-percentage"></span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-bar" class="progress-fill progress-bar-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200000"></div>
+          </div>
+          <p id="progress-status" class="progress-status">Apoie nossa causa com qualquer valor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doação -->
+    <section id="doar" class="section">
+      <div class="container">
+        <h2 class="section-title">Faça sua doação</h2>
+        <p class="section-intro">Escolha um valor ou informe o valor desejado. Você será redirecionado ao checkout.</p>
+        <div class="doacao-box">
+          <div class="valores-sugeridos">
+            <button type="button" class="btn-valor" data-valor="25">R$ 25</button>
+            <button type="button" class="btn-valor" data-valor="50">R$ 50</button>
+            <button type="button" class="btn-valor" data-valor="100">R$ 100</button>
+            <button type="button" class="btn-valor" data-valor="500">R$ 500</button>
+          </div>
+          <div class="valor-personalizado">
+            <label for="valor-custom">Outro valor (R$)</label>
+            <input type="number" id="valor-custom" min="10" step="5" placeholder="Ex: 150">
+          </div>
+          <div class="doacao-buttons">
+            <button type="button" id="btn-doar" class="btn-doar">Confirmar e doar</button>
+            <button type="button" id="btn-pix" class="btn-doar btn-pix">Pagar com Pix</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="logo">Doe por Eles</span>
+      <p><strong>CNPJ:</strong> 00.000.000/0001-00</p>
+      <p><strong>Contato:</strong> contato@doeporeles.org.br</p>
+      <p class="footer-copy">&copy; 2025 Doe por Eles. Todos os direitos reservados.</p>
+      <div class="footer__apoio">
+        <img
+          src="/assets/images/logo-governo-federal.svg"
+          alt="Logotipo do Governo Federal do Brasil"
+          class="footer__apoio-logo"
+        >
+        <p class="footer__apoio-text">Apoio institucional: Governo Federal</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal PIX QR -->
+  <div id="modal-pix" class="modal-pix" role="dialog" aria-modal="true" aria-labelledby="modal-pix-title" hidden>
+    <div class="modal-pix-content">
+      <h3 id="modal-pix-title">Pagamento via Pix</h3>
+      <p class="modal-pix-instruction">Abra o app do seu banco ou escaneie o QR com a câmera.</p>
+      <div id="modal-pix-qr-wrap" class="modal-pix-qr"></div>
+      <div class="modal-pix-actions">
+        <button type="button" id="btn-copy-pix" class="btn-modal">Copiar código Pix</button>
+        <a id="btn-open-pix" href="#" target="_blank" rel="noopener" class="btn-modal btn-link">Abrir no app</a>
+      </div>
+      <p id="modal-pix-expires" class="modal-pix-expires"></p>
+      <button type="button" id="btn-verify-pix" class="btn-modal btn-secondary">Já paguei — verificar status</button>
+      <button type="button" id="btn-close-pix" class="modal-pix-close" aria-label="Fechar">×</button>
+    </div>
+  </div>
+  <script src="/js/main.js"></script>
+</body>
+</html>

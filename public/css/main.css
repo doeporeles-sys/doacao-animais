@@ -1,0 +1,12 @@
+/**
+ * Doe por Eles — Estilos principais
+ * Agrupa base e componentes (ordem de especificidade)
+ */
+
+@import url('base.css');
+@import url('components/header.css');
+@import url('components/hero.css');
+@import url('components/progress.css');
+@import url('components/content.css');
+@import url('components/donation.css');
+@import url('components/footer.css');

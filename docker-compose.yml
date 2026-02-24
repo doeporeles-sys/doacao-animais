@@ -1,0 +1,24 @@
+# Doe por Eles — docker-compose mínimo
+# Uso: docker-compose up -d
+# Acesse: http://localhost:8080
+
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      # Substitua pelos valores reais ou use .env
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - MERCADO_PAGO_ACCESS_TOKEN=${MERCADO_PAGO_ACCESS_TOKEN}
+      - BASE_URL=${BASE_URL}
+    volumes:
+      # Persistir banco SQLite
+      - doacao-data:/app/data
+
+volumes:
+  doacao-data:

@@ -1,0 +1,74 @@
+/**
+ * Componente: Metas e barra de progresso
+ */
+
+.goals-section {
+  background: #fff;
+}
+
+.goals-text {
+  margin-bottom: 1rem;
+  color: #5c5852;
+}
+
+.goals-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.goals-meta span {
+  font-weight: 600;
+  color: #1b4332;
+}
+
+.progress-card {
+  background: #faf9f7;
+  border: 1px solid #e8e6e3;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.progress-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.progress-label {
+  font-size: 0.85rem;
+  color: #5c5852;
+}
+
+.progress-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1b4332;
+}
+
+.progress-track {
+  height: 12px;
+  background: #e8e6e3;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  max-width: 100%;
+  background: #2d6a4f;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progress-status {
+  font-size: 0.85rem;
+  color: #5c5852;
+  margin: 0.5rem 0 0;
+}

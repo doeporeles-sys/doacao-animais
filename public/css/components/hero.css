@@ -1,0 +1,42 @@
+/**
+ * Componente: Hero
+ */
+
+.hero {
+  background: #1b4332;
+  color: #fff;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.92;
+  margin: 0 0 2rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-hero {
+  display: inline-block;
+  background: #fff;
+  color: #1b4332;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

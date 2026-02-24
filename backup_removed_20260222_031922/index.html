@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doe por Eles — Apoio a Animais em Situação de Rua</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #2c2a26;
+      background: #faf9f7;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e8e6e3;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 60px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #1b4332;
+      text-decoration: none;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .nav a {
+      color: #2c2a26;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .nav a:hover { color: #1b4332; }
+    .btn-nav {
+      background: #1b4332;
+      color: #fff !important;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .menu-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #2c2a26;
+    }
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid #e8e6e3;
+      }
+      .nav.is-open { display: flex; }
+      .menu-toggle { display: flex; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #1b4332, #2d6a4f);
+      color: #fff;
+      padding: 3.2rem 0 3.4rem;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: clamp(1.8rem, 4.4vw, 2.6rem);
+      font-weight: 800;
+      margin: 0 0 1rem;
+      line-height: 1.15;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      opacity: 0.96;
+      margin: 0 0 1rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-impact {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 2rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.14);
+      border-radius: 8px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+      line-height: 1.4;
+    }
+    .cta-hero {
+      display: inline-block;
+      background: #ffd86b;
+      color: #1b4332;
+      font-weight: 700;
+      padding: 0.85rem 1.9rem;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 2px solid rgba(0,0,0,0.04);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      animation: cta-hero-pulse 2.3s ease-in-out infinite;
+    }
+    .cta-hero:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+      background-color: #ffe387;
+    }
+    .cta-hero:focus-visible {
+      outline: 3px solid #fffbcc;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.25);
+    }
+    .hero-microcopy {
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      opacity: 0.92;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      color: rgba(255,255,255,0.92);
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem 1.5rem;
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-trust-item {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.95);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .hero-trust-item strong {
+      color: #fff;
+      font-weight: 700;
+    }
+    .hero-trust-sep {
+      width: 1px;
+      height: 1.2em;
+      background: rgba(255,255,255,0.35);
+      flex-shrink: 0;
+    }
+    @media (max-width: 480px) {
+      .hero-trust-sep { display: none; }
+      .hero-trust { gap: 0.6rem; }
+    }
+    @keyframes cta-hero-pulse {
+      0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+      }
+      50% {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 16px 34px rgba(0,0,0,0.28);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta-hero {
+        animation: none;
+      }
+    }
+
+    /* ===== SEÇÕES ===== */
+    .section {
+      padding: 2.5rem 0;
+    }
+    .section:nth-child(even) { background: #fff; }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 1.7rem);
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: #2c2a26;
+    }
+    .section-intro {
+      color: #5c5852;
+      margin: 0 0 1.5rem;
+      max-width: 600px;
+    }
+
+    /* ===== METAS + PROGRESS ===== */
+    .goals-section { background: #fff; }
+    .goals-text {
+      margin-bottom: 1rem;
+      color: #5c5852;
+    }
+    .goals-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .goals-meta span {
+      font-weight: 600;
+      color: #1b4332;
+    }
+    .progress-card {
+      background: #faf9f7;
+      border: 1px solid #e8e6e3;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .progress-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .progress-label { font-size: 0.85rem; color: #5c5852; }
+    .progress-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1b4332;
+    }
+    .progress-track {
+      height: 12px;
+      background: #e8e6e3;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      max-width: 100%;
+      background: #2d6a4f;
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+    .progress-status {
+      font-size: 0.85rem;
+      color: #5c5852;
+      margin: 0.5rem 0 0;
+    }
+
+    /* ===== PROBLEMA ===== */
+    .problema-list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    .problema-list li { margin-bottom: 0.75rem; }
+    .problema-list strong { color: #1b4332; }
+
+    /* ===== USO DOS RECURSOS ===== */
+    .destino-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+    .destino-card {
+      background: #faf9f7;
+      border: 1px solid #e8e6e3;
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .destino-percent {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1b4332;
+      margin-bottom: 0.35rem;
+    }
+    .destino-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+    }
+    .destino-card p {
+      font-size: 0.9rem;
+      color: #5c5852;
+      margin: 0;
+    }
+
+    /* ===== DOAÇÃO ===== */
+    .doacao-box {
+      background: #fff;
+      border: 1px solid #e8e6e3;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      max-width: 440px;
+    }
+    .valores-sugeridos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .btn-valor {
+      flex: 1;
+      min-width: 70px;
+      padding: 0.65rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: 2px solid #e8e6e3;
+      background: #fff;
+      color: #2c2a26;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .btn-valor:hover {
+      border-color: #1b4332;
+      color: #1b4332;
+    }
+    .btn-valor.ativo {
+      border-color: #1b4332;
+      background: #1b4332;
+      color: #fff;
+    }
+    .valor-personalizado { margin-bottom: 1.25rem; }
+    .valor-personalizado label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      font-size: 0.9rem;
+    }
+    .valor-personalizado input {
+      width: 100%;
+      padding: 0.65rem;
+      font-size: 1rem;
+      border: 1px solid #e8e6e3;
+      border-radius: 6px;
+    }
+    .valor-personalizado input:focus {
+      outline: none;
+      border-color: #1b4332;
+      box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.12);
+    }
+    .btn-doar {
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #1b4332;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-doar:hover { background: #0d2818; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #2c2a26;
+      color: rgba(255,255,255,0.88);
+      padding: 1.5rem 0 1rem;
+    }
+    .footer .logo { color: #fff; }
+    .footer p { margin: 0.25rem 0; font-size: 0.9rem; }
+    .footer-copy {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .footer__apoio {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      opacity: 0.85;
+      text-align: center;
+    }
+    .footer__apoio-logo {
+      display: block;
+      max-width: 140px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto 0.4rem;
+    }
+    .footer__apoio-text {
+      margin: 0;
+      color: rgba(255,255,255,0.8);
+    }
+    @media (min-width: 768px) {
+      .footer__apoio {
+        text-align: left;
+      }
+      .footer__apoio-logo {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Doe por Eles</a>
+      <nav class="nav" id="nav">
+        <a href="#problema">O Problema</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#metas">Metas</a>
+        <a href="#doar" class="btn-nav">Doar</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Doe agora e tire animais da rua</h1>
+        <p class="hero-subtitle">Sua doação financia resgate, atendimento veterinário, abrigo temporário e adoção responsável em parceria com ONGs sérias.</p>
+        <p class="hero-impact">Cada R$ 500 financia um resgate completo com atendimento veterinário.</p>
+        <a
+          href="#doar"
+          class="cta-hero"
+          aria-label="Fazer uma doação agora para apoiar animais em situação de rua"
+        >
+          Fazer uma doação agora
+        </a>
+        <p class="hero-microcopy">
+          Doação segura, com total transparência e prestação de contas enviada a cada campanha.
+        </p>
+        <div class="hero-trust" role="region" aria-label="Metas da campanha e compromisso de transparência">
+          <span class="hero-trust-item"><strong>Meta inicial:</strong> R$ 50.000</span>
+          <span class="hero-trust-sep" aria-hidden="true"></span>
+          <span class="hero-trust-item"><strong>Meta estendida:</strong> R$ 200.000</span>
+          <span class="hero-trust-sep" aria-hidden="true"></span>
+          <span class="hero-trust-item">Prestação de contas pública</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- O Problema -->
+    <section id="problema" class="section">
+      <div class="container">
+        <h2 class="section-title">Por que sua doação importa</h2>
+        <p class="section-intro">Milhares de cães e gatos vivem em vulnerabilidade nas ruas. Sem atendimento veterinário, alimentação ou abrigo, muitos não sobrevivem.</p>
+        <ul class="problema-list">
+          <li><strong>Resgate:</strong> Retirada segura de animais em risco ou maus-tratos.</li>
+          <li><strong>Atendimento veterinário:</strong> Vacinas, castração e tratamentos de emergência.</li>
+          <li><strong>Abrigo e alimentação:</strong> Espaço temporário e ração até adoção ou realocação.</li>
+          <li><strong>Realocação:</strong> Encaminhamento para lares temporários ou adoção responsável.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Como os recursos serão usados -->
+    <section id="recursos" class="section">
+      <div class="container">
+        <h2 class="section-title">Como usamos os recursos</h2>
+        <p class="section-intro">Compromisso total com transparência. Os valores são destinados às ONGs parceiras conforme o modelo abaixo.</p>
+        <div class="destino-grid">
+          <div class="destino-card">
+            <div class="destino-percent">70%</div>
+            <h3>Atendimento veterinário</h3>
+            <p>Consultas, vacinação, castração, medicamentos e cirurgias de emergência.</p>
+          </div>
+          <div class="destino-card">
+            <div class="destino-percent">20%</div>
+            <h3>Abrigo e alimentação</h3>
+            <p>Manutenção de abrigos temporários, ração e cuidados diários.</p>
+          </div>
+          <div class="destino-card">
+            <div class="destino-percent">10%</div>
+            <h3>Logística de resgate</h3>
+            <p>Transporte e deslocamento para resgates e realocações.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metas + Barra de progresso -->
+    <section id="metas" class="section goals-section">
+      <div class="container">
+        <h2 class="section-title">Nossas metas</h2>
+        <p class="goals-text">Meta inicial: <strong>R$ 50.000</strong> — Meta estendida: <strong>R$ 200.000</strong>. A barra abaixo reflete o total arrecadado em relação à meta estendida.</p>
+        <div class="goals-meta">
+          <span id="meta-inicial-text">Meta inicial: R$ 50.000</span>
+          <span id="meta-estendida-text">Meta estendida: R$ 200.000</span>
+        </div>
+        <div class="progress-card">
+          <div class="progress-header">
+            <span class="progress-label">Arrecadado</span>
+            <span id="valor-arrecadado" class="progress-value">R$ 0</span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-bar" class="progress-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="200000"></div>
+          </div>
+          <p id="progress-status" class="progress-status">Apoie nossa causa com qualquer valor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Doação -->
+    <section id="doar" class="section">
+      <div class="container">
+        <h2 class="section-title">Faça sua doação</h2>
+        <p class="section-intro">Escolha um valor ou informe o valor desejado. Você será redirecionado ao checkout.</p>
+        <div class="doacao-box">
+          <div class="valores-sugeridos">
+            <button type="button" class="btn-valor" data-valor="25">R$ 25</button>
+            <button type="button" class="btn-valor" data-valor="50">R$ 50</button>
+            <button type="button" class="btn-valor" data-valor="100">R$ 100</button>
+            <button type="button" class="btn-valor" data-valor="500">R$ 500</button>
+          </div>
+          <div class="valor-personalizado">
+            <label for="valor-custom">Outro valor (R$)</label>
+            <input type="number" id="valor-custom" min="10" step="5" placeholder="Ex: 150">
+          </div>
+          <button type="button" id="btn-doar" class="btn-doar">Confirmar e doar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="logo">Doe por Eles</span>
+      <p><strong>CNPJ:</strong> 00.000.000/0001-00</p>
+      <p><strong>Contato:</strong> contato@doeporeles.org.br</p>
+      <p class="footer-copy">&copy; 2025 Doe por Eles. Todos os direitos reservados.</p>
+      <div class="footer__apoio">
+        <img
+          src="public/assets/images/logo-governo-federal.svg"
+          alt="Logotipo do Governo Federal do Brasil"
+          class="footer__apoio-logo"
+        >
+        <p class="footer__apoio-text">Apoio institucional: Governo Federal</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * Doe por Eles — Landing page única
+     * Estrutura preparada para futura integração com API:
+     * - Atualizar `collected` via API e chamar updateProgress().
+     */
+
+    // ----- Variáveis de meta e arrecadação (podem vir de API no futuro) -----
+    var goal = 50000;           // Meta inicial em reais
+    var goalExtended = 200000;  // Meta estendida em reais
+    var collected = 0;          // Valor arrecadado em reais — atualizar aqui ou via API
+
+    // URL do checkout externo (redirecionamento com ?amount=VALOR)
+    var checkoutBaseUrl = 'https://exemplo-checkout.com/doar';
+
+    // ----- Formatação para moeda brasileira -----
+    /**
+     * Formata um número como moeda em Real (Brasil).
+     * @param {number} value - Valor numérico
+     * @returns {string} Valor formatado, ex: "R$ 1.500,00"
+     */
+    function formatCurrency(value) {
+      var num = Number(value);
+      if (isNaN(num)) return 'R$ 0,00';
+      return num.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      });
+    }
+
+    // ----- Atualização da barra de progresso -----
+    /**
+     * Atualiza a barra de progresso e os textos com base em `collected`.
+     * Chamar após alterar `collected` (manual ou via API).
+     */
+    function updateProgress() {
+      var elValor = document.getElementById('valor-arrecadado');
+      var elBar = document.getElementById('progress-bar');
+      var elStatus = document.getElementById('progress-status');
+
+      if (elValor) elValor.textContent = formatCurrency(collected);
+
+      if (elBar) {
+        var percent = goalExtended > 0 ? Math.min(100, (collected / goalExtended) * 100) : 0;
+        elBar.style.width = percent + '%';
+        elBar.setAttribute('aria-valuenow', collected);
+        elBar.setAttribute('aria-valuemax', goalExtended);
+      }
+
+      if (elStatus) {
+        if (collected >= goalExtended) {
+          elStatus.textContent = 'Meta estendida atingida! Obrigado a todos os doadores.';
+        } else if (collected >= goal) {
+          elStatus.textContent = 'Meta inicial batida! Rumo à meta estendida de R$ 200.000.';
+        } else {
+          elStatus.textContent = 'Apoie nossa causa com qualquer valor.';
+        }
+      }
+    }
+
+    // ----- Redirecionamento para checkout com ?amount=VALOR -----
+    /**
+     * Redireciona para a URL do checkout externo com o valor na querystring.
+     * @param {number} amount - Valor da doação em reais
+     */
+    function redirectToCheckout(amount) {
+      var value = Number(amount);
+      if (isNaN(value) || value < 10) {
+        alert('Por favor, informe um valor válido (mínimo R$ 10).');
+        return;
+      }
+      var separator = checkoutBaseUrl.indexOf('?') >= 0 ? '&' : '?';
+      var url = checkoutBaseUrl + separator + 'amount=' + value;
+      window.location.href = url;
+    }
+
+    // ----- Inicialização: doação e progresso -----
+    (function init() {
+      var valorSelecionado = null;
+      var btnDoar = document.getElementById('btn-doar');
+      var valorCustom = document.getElementById('valor-custom');
+      var botoesValor = document.querySelectorAll('.btn-valor');
+
+      // Botões de valor sugerido
+      botoesValor.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var v = Number(btn.getAttribute('data-valor'));
+          valorSelecionado = v;
+          botoesValor.forEach(function (b) { b.classList.remove('ativo'); });
+          btn.classList.add('ativo');
+          if (valorCustom) valorCustom.value = v;
+        });
+      });
+
+      // Campo valor personalizado: desmarca botões
+      if (valorCustom) {
+        valorCustom.addEventListener('input', function () {
+          botoesValor.forEach(function (b) { b.classList.remove('ativo'); });
+          valorSelecionado = Number(valorCustom.value) || null;
+        });
+      }
+
+      // Botão "Confirmar e doar" — redireciona com ?amount=VALOR
+      if (btnDoar) {
+        btnDoar.addEventListener('click', function () {
+          var valor = valorSelecionado;
+          if (valorCustom && Number(valorCustom.value) >= 10) {
+            valor = Number(valorCustom.value);
+          }
+          redirectToCheckout(valor || 0);
+        });
+      }
+
+      // Menu móvel
+      var menuToggle = document.getElementById('menu-toggle');
+      var nav = document.getElementById('nav');
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', open);
+        });
+      }
+
+      // Atualiza a barra na carga da página
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>

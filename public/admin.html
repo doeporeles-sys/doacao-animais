@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Doe por Eles</title>
+  <link rel="stylesheet" href="/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Login -->
+    <div id="login-view" class="view">
+      <div class="login-card">
+        <h1>Admin — Doe por Eles</h1>
+        <p class="login-subtitle">Área restrita</p>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" required autocomplete="current-password">
+          </div>
+          <div id="login-error" class="error-msg" hidden></div>
+          <button type="submit" id="login-btn" class="btn btn-primary">Entrar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard-view" class="view" hidden>
+      <header class="admin-header">
+        <span class="admin-logo">Doe por Eles — Admin</span>
+        <button type="button" id="logout-btn" class="btn btn-outline">Sair</button>
+      </header>
+      <main class="admin-main">
+        <h2>Painel de doações</h2>
+
+        <!-- Métricas -->
+        <div id="stats-loading" class="loading loading-inline" hidden>Carregando métricas...</div>
+        <div id="stats-error" class="error-msg" hidden></div>
+        <div id="metrics-wrap" class="metrics-wrap">
+          <div class="metrics-grid">
+            <div class="metric-card metric-card-highlight">
+              <span class="metric-value" id="metric-total">R$ 0</span>
+              <span class="metric-label">Total arrecadado</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value" id="metric-count">0</span>
+              <span class="metric-label">Doações confirmadas</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value" id="metric-refunded">0</span>
+              <span class="metric-label">Estornadas</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value" id="metric-goal">R$ 0</span>
+              <span class="metric-label">Meta da campanha</span>
+            </div>
+          </div>
+
+          <!-- Gráfico -->
+          <div class="chart-card">
+            <h3>Confirmadas vs Estornadas</h3>
+            <div class="chart-container">
+              <canvas id="chart-donations"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de doações -->
+        <div class="section-card">
+          <h3>Lista de doações</h3>
+          <div id="donations-loading" class="loading" hidden>Carregando...</div>
+          <div id="donations-error" class="error-msg" hidden></div>
+          <div class="table-wrap">
+            <table class="donations-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Data</th>
+                </tr>
+              </thead>
+              <tbody id="donations-tbody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/admin.js?v=2"></script>
+</body>
+</html>
