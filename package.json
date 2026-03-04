@@ -7,9 +7,10 @@
     "start": "node server/node/index.js",
     "dev": "nodemon server/node/index.js",
     "db:reset": "knex --knexfile knexfile.cjs migrate:rollback && knex --knexfile knexfile.cjs migrate:latest && knex --knexfile knexfile.cjs seed:run",
-    "migrate": "knex --knexfile knexfile.cjs migrate:latest",
     "seed": "knex --knexfile knexfile.cjs seed:run",
-    "db:inspect": "node scripts/inspect-db.js"
+    "db:inspect": "node scripts/inspect-db.js",
+    "knex:print": "node scripts/print-knex-config.js",
+    "migrate": "node scripts/print-knex-config.js && knex --knexfile knexfile.cjs migrate:latest"
   },
   "engines": {
     "node": "22.x"
