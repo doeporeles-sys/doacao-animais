@@ -10,8 +10,8 @@ var knexFactory = require('knex');
 // Ambiente padrão: development
 var env = process.env.NODE_ENV || 'development';
 
-// Caminho robusto para <raiz>/data/doacao.db
-var dbPath = path.join(__dirname, '..', '..', '..', 'data', 'doacao.db');
+// Caminho robusto para <repo_root>/data/doacao.db (__dirname = server/node)
+var dbPath = path.join(__dirname, '..', '..', 'data', 'doacao.db');
 var dataDir = path.dirname(dbPath);
 
 // Garante que a pasta data/ exista (local/Render com disk mount)
@@ -24,7 +24,7 @@ try {
 var config;
 try {
   // knexfile.js está na raiz do repo
-  config = require(path.join(__dirname, '..', '..', '..', 'knexfile.js'));
+  config = require(path.join(__dirname, '..', '..', 'knexfile.js'));
 } catch (e) {
   config = null;
 }

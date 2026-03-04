@@ -8,6 +8,7 @@ var pino = require('pino');
 var knex = require('../db');
 
 var logger = pino({ level: process.env.LOG_LEVEL || 'info' });
+var appLogger = require('../lib/logger');
 
 var router = express.Router();
 
@@ -28,6 +29,9 @@ router.get('/campaign', async function (req, res) {
       collected: row.collected
     });
   } catch (err) {
+    var logData = { err: err.message };
+    if (process.env.NODE_ENV !== 'production') logData.stack = err.stack;
+    appLogger.logError(req, err.message, logData);
     res.status(500).json({ error: 'Erro interno do servidor' });
   }
 });
@@ -86,6 +90,9 @@ router.post('/donate', donateValidation, async function (req, res) {
     logger.info({ amount, method, donor_name: donorName, collected: result.collected }, 'doação processada');
     res.json(result);
   } catch (err) {
+    var logData = { err: err.message };
+    if (process.env.NODE_ENV !== 'production') logData.stack = err.stack;
+    appLogger.logError(req, err.message, logData);
     res.status(500).json({ error: 'Erro ao processar doação' });
   }
 });
