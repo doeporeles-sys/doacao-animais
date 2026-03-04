@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server/node/index.js",
     "dev": "nodemon server/node/index.js",
-    "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:run",
-    "migrate": "knex migrate:latest",
-    "seed": "knex seed:run",
+    "db:reset": "knex --knexfile knexfile.js migrate:rollback && knex --knexfile knexfile.js migrate:latest && knex --knexfile knexfile.js seed:run",
+    "migrate": "knex --knexfile knexfile.js migrate:latest",
+    "seed": "knex --knexfile knexfile.js seed:run",
     "db:inspect": "node scripts/inspect-db.js"
   },
   "engines": {
