@@ -23,10 +23,13 @@ try {
 
 var config;
 try {
-  // knexfile.js está na raiz do repo
-  config = require(path.join(__dirname, '..', '..', 'knexfile.js'));
+  config = require(path.join(__dirname, '..', '..', 'knexfile.cjs'));
 } catch (e) {
-  config = null;
+  try {
+    config = require(path.join(__dirname, '..', '..', 'knexfile.js'));
+  } catch (e2) {
+    config = null;
+  }
 }
 
 var selected = (config && config[env]) ? config[env] : {

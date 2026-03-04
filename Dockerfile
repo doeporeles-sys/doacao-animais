@@ -10,10 +10,10 @@ RUN npm ci --only=production
 # Código
 COPY server ./server
 COPY public ./public
-COPY knexfile.js ./
+COPY knexfile.cjs ./
 
 # Criar pasta data e rodar migrations
-RUN mkdir -p data && npx knex migrate:latest || true
+RUN mkdir -p data && npx knex --knexfile knexfile.cjs migrate:latest || true
 
 EXPOSE 8080
 
